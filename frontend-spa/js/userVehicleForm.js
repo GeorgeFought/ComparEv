@@ -7,12 +7,12 @@ import { displaySingleEV } from "./single-vehicle.js";
 
 
 
-fetch("https://comparev.herokuapp.com/api/ice/states")
+fetch("http://api/ice/states")
     .then(response => response.json())
     .then(states => genStates(states))
     .catch(error => console.log(error))
 
-fetch("https://comparev.herokuapp.com/api/ice/years")
+fetch("http://api/ice/years")
     .then(response => response.json())
     .then(years => genYears(years))
     .catch(error => console.log(error))
@@ -54,7 +54,7 @@ submitButton.addEventListener("click", () => {
     const userMakeId = makeSelectElement.getElementsByClassName("make-option")[userMakeIndex].getAttribute("id")
     const userModelId = modelSelectElement.getElementsByClassName("model-option")[userModelIndex].getAttribute("id")
 
-    fetch("https://comparev.herokuapp.com/api/ice/userVehicle/" + userStateId, {
+    fetch("http://api/ice/userVehicle/" + userStateId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ submitButton.addEventListener("click", () => {
         .catch(error => console.log(error))
 
     // http://localhost:8080/api/ice/userVehicle/{year}/{make}/{model}
-    fetch("https://comparev.herokuapp.com/api/ice/userVehicle/" + userYearId + "/" + userMakeId + "/" + userModelId, {
+    fetch("http://api/ice/userVehicle/" + userYearId + "/" + userMakeId + "/" + userModelId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ const genYears = function (years) {
         clearChildren(makeSelectElement)
         clearChildren(modelSelectElement)
 
-        fetch("https://comparev.herokuapp.com/api/ice/years/" + yearSelectElement.value, {
+        fetch("http://api/ice/years/" + yearSelectElement.value, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -151,7 +151,7 @@ const genMakes = function (makes) {
 
         let userMake = makeSelectElement.value
         // http://localhost:8080/api/ice/years/2012/ford
-        fetch("https://comparev.herokuapp.com/api/ice/years/" + yearSelectElement.value + "/" + userMake.toLowerCase(), {
+        fetch("http://api/ice/years/" + yearSelectElement.value + "/" + userMake.toLowerCase(), {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -250,9 +250,9 @@ const genUserVehicleComp = function (userVehicle, userStateObj) {
 
 const genEVComparison = function (priceRange, userVehicle, userStateObj, weeklyMiles) {
 
-    console.log("https://comparev.herokuapp.com/api/ev/charge/" + stateSelectElement.value)
+    console.log("http://api/ev/charge/" + stateSelectElement.value)
 
-    fetch("https://comparev.herokuapp.com/api/ev/charge/" + stateSelectElement.value, {
+    fetch("http://api/ev/charge/" + stateSelectElement.value, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -263,7 +263,7 @@ const genEVComparison = function (priceRange, userVehicle, userStateObj, weeklyM
         .catch(error => console.log(error))
 
 
-    fetch("https://comparev.herokuapp.com/api/electricVehicles/compare/" + priceRange, {
+    fetch("http://api/electricVehicles/compare/" + priceRange, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -747,7 +747,7 @@ const displayComparedEV = function (ElectricVehicle,allEVs, userVehicle, userSta
         if (reviewCommentInput.value !== "") {
             const json = JSON.stringify(reviewCommentInput.value);
             const unqoutedJson = json.replace(/\"/g, "");
-            fetch("https://comparev.herokuapp.com/api/electricVehicles/" + ElectricVehicle.id + "/comments", {
+            fetch("http://api/electricVehicles/" + ElectricVehicle.id + "/comments", {
                     method: "PATCH",
                     headers: {
                         'Content-Type': 'application/json'
@@ -769,7 +769,7 @@ const displayComparedEV = function (ElectricVehicle,allEVs, userVehicle, userSta
 
 }
 
-fetch("https://comparev.herokuapp.com/api/articles")
+fetch("http://api/articles")
     .then(response => response.json())
     .then(articles => indexArticles(articles))
     .catch(error => console.log(error))

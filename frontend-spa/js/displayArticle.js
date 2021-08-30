@@ -92,7 +92,7 @@ const displayArticle = function (article) {
         if (articleCommentInput.value !== "") {
             const json = JSON.stringify(articleCommentInput.value);
             const unqoutedJson = json.replace(/\"/g, "");
-            fetch("https://comparev.herokuapp.com/api/articleTopics/" + article.articleTopicId + "/articles/" + article.id + "/comments", {
+            fetch("http://api/articleTopics/" + article.articleTopicId + "/articles/" + article.id + "/comments", {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
