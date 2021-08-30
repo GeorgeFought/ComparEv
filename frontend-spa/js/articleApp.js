@@ -7,7 +7,7 @@ const bodyElement = document.querySelector("body");
 
 bodyElement.append(displayHeader());
 
-await fetch("api/articleTopics")
+await fetch("https://comparev.herokuapp.com/api/articleTopics")
     .then(response => response.json())
     .then(allArticleTopics => displayAllTopics(allArticleTopics))
     .catch(error => console.log(error))

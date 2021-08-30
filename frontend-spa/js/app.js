@@ -22,7 +22,7 @@ const body = document.querySelector(".body")
 
 body.append(displayHeader());
 
-await fetch("http://api/electricVehicles")
+await fetch("https://comparev.herokuapp.com/api/electricVehicles")
 .then(response => response.json())
 .then(allElectricVehicles => displayAllVehicles(allElectricVehicles))
 .catch(error => console.log(error))

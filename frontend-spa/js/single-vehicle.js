@@ -300,7 +300,7 @@ const displaySingleEV = function (ElectricVehicle) {
         if (reviewCommentInput.value !== "") {
             const json = JSON.stringify(reviewCommentInput.value);
             const unqoutedJson = json.replace(/\"/g, "");
-            fetch("http://api/electricVehicles/" + ElectricVehicle.id + "/comments", {
+            fetch("https://comparev.herokuapp.com/api/electricVehicles/" + ElectricVehicle.id + "/comments", {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json'
